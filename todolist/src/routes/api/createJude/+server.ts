@@ -14,6 +14,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				list: newList.value
 			}
 		});
+		
 		console.log(list);
 	}
 

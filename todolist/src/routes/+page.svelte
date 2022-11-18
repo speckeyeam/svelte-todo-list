@@ -55,6 +55,9 @@ value
 <button on:click={incrementCount}>
 	Clicked {count} {count === 1 ? 'time' : 'times'}
 </button>
+
+<a href = "/signup">Create Account</a>
+<a href = "/login">Log in</a>
 {#each todolist as item, i}
 	<li>{i + 1}: {item}</li>
 {/each}
