@@ -14,6 +14,8 @@ const signupSchema = z.object({
 });
 export const actions: Actions = {
 	default: async ({ cookies, request }) => {
+
+
 		const data = await request.formData();
 		const { username, email, password } = signupSchema.parse({
 			username: data.get('username'),
@@ -42,6 +44,17 @@ export const actions: Actions = {
 				username
 			}
 		});
+
+		const userid: string = user.id
+		cookies.set('userid', userid, {
+		  path: '/',
+		  maxAge: 60 * 60 * 24 * 365,
+		  sameSite: true,
+		  httpOnly: true
+		})
+
+		let test = cookies.get('userid');
+		console.log(test)
 		return user.id;
 		/*bcrypt.compare(
 			'penis',

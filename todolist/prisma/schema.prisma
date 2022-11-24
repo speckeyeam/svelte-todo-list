@@ -21,3 +21,8 @@ model User {
   username String @unique
   todos    Todo[]
 }
+
+model SessionId {
+  sessionId       String @id @default(uuid())
+  userId String
+}
