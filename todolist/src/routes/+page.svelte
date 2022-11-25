@@ -28,7 +28,7 @@ function incrementCount() {
 
         todolist = todolist;
 	}
-	
+	let response;
 	const handleSubmit = async () => {
     fetch("/api/createJude", {
       method: "POST",
@@ -37,8 +37,40 @@ value
       })
     })
     .then(res => res.json())
-    .then(res => console.log(res))
+    .then(res => {
+      if (res.sucess){
+        alert("sucess")
+      }
+      else if (res.notLoggedIn){
+        alert("not logged in")
+      }
+      
+    })
     .catch(() => alert('Failed to submit'))
+
+ 
+  }
+
+  const signOut = async () =>{
+    fetch("/api/judeout", {
+      method: "POST",
+      body: JSON.stringify({
+value
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.sucess){
+alert("sucess")
+      }
+      else if (res.notLoggedIn){
+alert("not logged in")
+      }
+      
+    })
+    .catch(() => alert('Failed to submit'))
+
+  
   }
 
 
@@ -50,7 +82,7 @@ value
 <br>
 <br>
 
-
+<button on:click={signOut}>Sign Out</button>
 <button on:click={handleSubmit}>submit</button>
 <button on:click={incrementCount}>
 	Clicked {count} {count === 1 ? 'time' : 'times'}
