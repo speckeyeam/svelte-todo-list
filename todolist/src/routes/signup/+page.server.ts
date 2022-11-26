@@ -28,6 +28,12 @@ export const actions: Actions = {
 		if (result != null) {
 			return false;
 		}
+
+		const result2 = await prisma.user.findFirst({ where: { username } });
+
+		if (result2 != null) {
+			return false;
+		}
 		//f6952d6eef555ddd87aca66e56b91530222d6e318414816f3ba7cf5bf694bf0f
 		const hash = crypto
 			.createHash('sha256')
@@ -45,8 +51,15 @@ export const actions: Actions = {
 			}
 		});
 
+		const session = await prisma.sessionId.create({
+			data: {
+				userId: user.id,
+				expiration: String(Date.now() + (43800 *60000))
+			}
+		});
+
 		const userid: string = user.id
-		cookies.set('userid', userid, {
+		cookies.set('sessionid', session.sessionId, {
 		  path: '/',
 		  maxAge: 60 * 60 * 24 * 365,
 		  sameSite: true,

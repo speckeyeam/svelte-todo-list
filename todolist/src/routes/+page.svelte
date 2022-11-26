@@ -13,7 +13,8 @@ Storage.prototype.getObj = function(key) {
 */
 let todolist: string[]= ["eat joshua soup", "eat joshua food"];
 let count: number = 0;
-
+let error: boolean = false;
+let message: string;
 $: doubled = count * 2;
 /**
 	 * @type {any}
@@ -39,16 +40,17 @@ value
     .then(res => res.json())
     .then(res => {
       if (res.sucess){
-        alert("sucess")
+        error = false;
+        message = "sucessful"
       }
       else if (res.notLoggedIn){
+        error = true;
+        message = "not logged in"
         alert("not logged in")
       }
       
     })
     .catch(() => alert('Failed to submit'))
-
- 
   }
 
   const signOut = async () =>{
@@ -84,6 +86,9 @@ alert("not logged in")
 
 <button on:click={signOut}>Sign Out</button>
 <button on:click={handleSubmit}>submit</button>
+{#if error}
+  <h1> {message}</h1>
+{/if}
 <button on:click={incrementCount}>
 	Clicked {count} {count === 1 ? 'time' : 'times'}
 </button>

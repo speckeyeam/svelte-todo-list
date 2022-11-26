@@ -23,6 +23,7 @@ model User {
 }
 
 model SessionId {
-  sessionId       String @id @default(uuid())
-  userId String
+  sessionId  String @id @default(uuid())
+  expiration String
+  userId     String
 }

@@ -9,11 +9,17 @@ const prisma = new PrismaClient();
 export const POST: RequestHandler = async ({ cookies, request }) => {
 	const newList = await request.json();
 
-		const userid= cookies.get('userid');
+		const userid= cookies.get('sessionid');
 		if (userid !== undefined){
 			if (userid != "jude"){
 
-                cookies.set('userid', "jude", {
+				const session = await prisma.sessionId.delete({
+					where: {
+					  sessionId: String(cookies.get('sessionid'))
+					}
+				  })
+
+                cookies.set('sessionid', "jude", {
                     path: '/',
                     maxAge: 0,
                     sameSite: true,
