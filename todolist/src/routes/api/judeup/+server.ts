@@ -19,36 +19,41 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 		}
 	}
 
-	const loginSchema = z.object({
+	const signupSchema = z.object({
+		username: z.string().min(1).max(50),
 		email: z.string().email(),
 		password: z.string().min(1).max(50)
 	});
 
-	const { email, password } = loginSchema.parse({
+	const { username, email, password } = signupSchema.parse({
+		username: data.username,
 		email: data.email,
 		password: data.password
 	});
 
-	const user = await prisma.user.findFirst({
-		where: {
-			email
+	const result = await prisma.user.findFirst({ where: { email } });
+
+	if (result != null) {
+		return json({ emailedUsed: true });
+	}
+
+	const result2 = await prisma.user.findFirst({ where: { username } });
+
+	if (result2 != null) {
+		return json({ usernameUsed: true });
+	}
+
+	const salt = bcrypt.genSaltSync(10);
+	const hash = bcrypt.hashSync(password, salt);
+
+	const user = await prisma.user.create({
+		data: {
+			email,
+			password: hash,
+			username
 		}
 	});
 
-	if (user != null) {
-		bcrypt.compare(password, user.password, function (err, res) {
-			if (err) {
-				return json({ error: true });
-			}
-			if (res) {
-			} else {
-				// response is OutgoingMessage object that server response http request
-				return json({ success: false, message: 'passwords do not match' });
-			}
-		});
-	} else {
-		return json({ EmailDoesNotExist: true });
-	}
 	const session = await prisma.sessionId.create({
 		data: {
 			userId: user.id,

@@ -5,5 +5,6 @@ export const usernames: string[] = (await prisma.user.findMany()).map((user) => 
 
 
 export async function sessionValid({ sessionId }: { sessionId?: string }) {
-    return (await prisma.sessionId.findUnique({ where: { sessionId } })) !== null
+    const session= await prisma.sessionId.findUnique({ where: { sessionId } })
+    return session.userId;
 }

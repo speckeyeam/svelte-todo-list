@@ -15,15 +15,17 @@ model Todo {
 }
 
 model User {
-  id       String @id @default(uuid())
-  email    String @unique
+  id       String      @id @default(uuid())
+  email    String      @unique
   password String
-  username String @unique
+  username String      @unique
   todos    Todo[]
+  sessoins SessionId[]
 }
 
 model SessionId {
   sessionId  String @id @default(uuid())
   expiration String
   userId     String
+  User       User   @relation(fields: [userId], references: [id])
 }

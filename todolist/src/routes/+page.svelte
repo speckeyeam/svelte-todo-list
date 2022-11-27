@@ -40,12 +40,10 @@ value
     .then(res => res.json())
     .then(res => {
       if (res.sucess){
-        error = false;
-        message = "sucessful"
+        alert("sucess")
       }
       else if (res.notLoggedIn){
         error = true;
-        message = "not logged in"
         alert("not logged in")
       }
       
@@ -74,9 +72,6 @@ alert("not logged in")
 
   
   }
-
-
-
 
 </script>
 
