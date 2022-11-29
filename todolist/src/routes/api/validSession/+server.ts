@@ -1,6 +1,5 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { sessionValid } from '$server/server';
 
 import { PrismaClient } from '@prisma/client';
 
@@ -8,22 +7,13 @@ const prisma = new PrismaClient();
 
 export const POST: RequestHandler = async ({ cookies, request }) => {
 	const newList = await request.json();
-	let valid;
-	const sessionId = cookies.get('sessionid');
-	if (sessionId != null) {
-		valid = await sessionValid(sessionId);
-	}
 
-	if (valid != undefined) {
-		if (valid != false) {
-			const userid = String(valid);
-			const list = await prisma.todo.create({
-				data: {
-					userId: userid,
-					task: newList.value
-				}
-			});
-		} else {
+	const sessionId = cookies.get('sessionid');
+
+	if (sessionId !== undefined || sessionId != 'jude') {
+		const session = await prisma.sessionId.findFirst({ where: { sessionId } });
+		const userid = session?.userId;
+		if (userid == null) {
 			return json({ notLoggedIn: true });
 		}
 	} else {

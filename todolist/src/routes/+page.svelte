@@ -20,6 +20,28 @@ $: doubled = count * 2;
 	 * @type {any}
 	 */
 let value: string;
+
+const loggedIn = async () => {
+  fetch("/api/createJude", {
+      method: "POST",
+      body: JSON.stringify({
+value: "jude"
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.sucess){
+        alert("sucess")
+      }
+      else if (res.notLoggedIn){
+        error = true;
+        alert("not logged in")
+      }
+      
+    })
+    .catch(() => alert('Failed to submit'))
+  }
+//loggedIn();
 function incrementCount() {
 		count += 1;
 	}
