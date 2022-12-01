@@ -9,7 +9,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	const newList = await request.json();
 
 	const userid = cookies.get('sessionid');
-	if (userid !== undefined) {
+	if (userid != undefined) {
 		if (userid != 'jude') {
 			const session = await prisma.sessionId.delete({
 				where: {

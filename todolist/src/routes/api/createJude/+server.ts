@@ -15,7 +15,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	}
 
 	if (valid != undefined) {
-		if (valid != false) {
+		if (valid != null) {
 			const userid = String(valid);
 			const list = await prisma.todo.create({
 				data: {

@@ -11,7 +11,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 
 	const sessionId = cookies.get('sessionid');
 
-	if (sessionId !== undefined || sessionId != 'jude') {
+	if (sessionId != undefined) {
 		const session = await prisma.sessionId.findFirst({ where: { sessionId } });
 		const userid = session?.userId;
 		if (userid != null) {

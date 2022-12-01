@@ -15,16 +15,14 @@ export const load: PageServerLoad = async ({ request, cookies }) => {
 		const valid = await sessionValid(sessionId);
 		if (valid != false) {
 			const userId = valid;
-			let user = await prisma.user.findFirst({ where: { id: userId } });
-			if (user != null){
+			let user = await prisma.user.findUnique({ where: { id: userId }, include: { todos: true } });
+			if (user != null) {
 				return {
-					post: user.todos;
+					post: user.todos
 				};
-			}
-			else{
+			} else {
 				throw error(403, 'FORBIDDEN');
 			}
-			
 		} else {
 			throw error(403, 'FORBIDDEN');
 		}

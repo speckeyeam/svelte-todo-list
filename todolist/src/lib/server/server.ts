@@ -15,9 +15,23 @@ export async function sessionValid(sessionId: string) {
 				return userId;
 			}
 		} else {
-			return false;
+			return null;
 		}
 	} else {
-		return false;
+		return null;
+	}
+}
+
+export async function getTask(id: number, userid: String) {
+	const task = await prisma.todo.findUnique({ where: { id } });
+
+	if (task != null) {
+		if (task.userId == userid) {
+			return task;
+		} else {
+			return null;
+		}
+	} else {
+		return null;
 	}
 }
