@@ -22,7 +22,7 @@ export async function sessionValid(sessionId: string) {
 	}
 }
 
-export async function getTask(id: number, userid: String) {
+export async function getTask(id: number, userid: string) {
 	const task = await prisma.todo.findUnique({ where: { id } });
 
 	if (task != null) {
