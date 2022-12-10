@@ -22,11 +22,11 @@ export async function sessionValid(sessionId: string) {
 	}
 }
 
-export async function getTask(id: number, userid: string) {
-	const task = await prisma.todo.findUnique({ where: { id } });
+export async function getTask(id: number, userId: string) {
+	const task = await prisma.todo.findFirst({ where: { id } });
 
 	if (task != null) {
-		if (task.userId == userid) {
+		if (task.userId == userId) {
 			return task;
 		} else {
 			return null;
