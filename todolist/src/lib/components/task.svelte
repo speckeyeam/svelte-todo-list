@@ -18,6 +18,31 @@
 			deleteBtn = true;
 		}
 	};
+
+    const updateTask = async () => {
+        alert("tewst")
+    fetch("/api/editJude", {
+      method: "POST",
+      body: JSON.stringify({
+task,
+id: data.task.id
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.sucess){
+        alert("sucess")
+      }
+      else if (!res.sucess){
+        alert("sucess")
+      }
+      else if (res.notLoggedIn){
+        alert("not logged in")
+      }
+      
+    })
+    .catch(() => alert('Failed to submit'))
+  }
 </script>
 
 <input
@@ -32,7 +57,7 @@
 {/if}
 
 {#if update}
-	<button>update</button>
+	<button on:click={updateTask}>update</button>
 {/if}
 <br />
 <slot />

@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 				if (task != null) {
 					return {
 						title: task.task,
-						id: task.id
+						id: 23
 					};
 				}
 			}

@@ -3,7 +3,6 @@
 	import Task from '$components/task.svelte';
 
 	export let data: PageData;
-	console.log(data.data);
 </script>
 
 <h2>JOWSH JOWSH</h2>
