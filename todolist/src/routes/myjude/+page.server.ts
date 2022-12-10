@@ -8,12 +8,12 @@ const prisma = new PrismaClient();
 
 export const prerender = false;
 // load data from the database based on the request
-export const load: PageServerLoad = async ({ request, cookies }) => {
+export const load: PageServerLoad = async ({ cookies }) => {
 	try {
-		const sessionId = String(cookies.get('sessionid'));
+		const sessionId = cookies.get('sessionid') as string;
 
 		const valid = await sessionValid(sessionId);
-		if (valid != false && valid != null) {
+		if (valid) {
 			const userId = valid;
 			const user = await prisma.user.findUnique({
 				where: { id: userId },
