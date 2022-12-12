@@ -3,6 +3,7 @@ import type { RequestHandler } from './$types';
 import { sessionValid } from '$server/server';
 
 import { PrismaClient } from '@prisma/client';
+import { invalidate } from '$app/navigation';
 
 const prisma = new PrismaClient();
 
@@ -29,7 +30,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	} else {
 		return json({ notLoggedIn: true });
 	}
-
+	invalidate('myjude');
 	return json({ sucess: true });
 
 	//return json(newList.value + " test");

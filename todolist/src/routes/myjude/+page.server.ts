@@ -10,6 +10,7 @@ export const prerender = false;
 // load data from the database based on the request
 export const load: PageServerLoad = async ({ cookies }) => {
 	try {
+		console.log('ran');
 		const sessionId = cookies.get('sessionid') as string;
 
 		const valid = await sessionValid(sessionId);
