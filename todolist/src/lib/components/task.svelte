@@ -34,12 +34,18 @@ id: data.id
     .then(res => {
       if (res.sucess){
         console.log("sucess")
+        originaltask = task
+        taskupdated();
+        
       }
       else if (!res.sucess){
         console.log("sucess")
       }
       else if (res.notLoggedIn){
         console.log("not logged in")
+      }
+      else{
+        console.log("something else")
       }
       
     })

@@ -30,7 +30,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	} else {
 		return json({ notLoggedIn: true });
 	}
-	invalidate('myjude');
+
 	return json({ sucess: true });
 
 	//return json(newList.value + " test");
