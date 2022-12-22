@@ -1,0 +1,60 @@
+$background-color: #10332E;
+$accent1-color: #1C3C38;
+$white2-color: #D9D9D9;
+
+/* 1C3C38 */
+* {
+    margin: 0;
+    color: white;
+    font-family: 'GFS Didot', serif;
+}
+body {
+  background-color: var(background-color);
+}
+.center {
+    margin: auto;
+}
+.flex { 
+    display: flex;
+}
+.vert {
+    flex-direction: column;
+}
+.align-center {
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+
+    display: grid;
+    place-content: center;
+}
+
+
+
+
+
+.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+.todo-cn {
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+.todo-cn .left-cn {
+    gap: 16px;
+}
+.todo-cn .right-cn {
+    align-items: flex-start;
+}
