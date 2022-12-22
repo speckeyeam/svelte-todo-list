@@ -19,30 +19,25 @@
 		}
 	};
 
-    const updateTask = async () => {
-        alert("tewst")
-    fetch("/api/editJude", {
-      method: "POST",
-      body: JSON.stringify({
-task,
-id: data.task.id
-      })
-    })
-    .then(res => res.json())
-    .then(res => {
-      if (res.sucess){
-        alert("sucess")
-      }
-      else if (!res.sucess){
-        alert("sucess")
-      }
-      else if (res.notLoggedIn){
-        alert("not logged in")
-      }
-      
-    })
-    .catch(() => alert('Failed to submit'))
-  }
+	const updateTask = async () => {
+		fetch('/api/editJude', {
+			method: 'POST',
+			body: JSON.stringify({
+				task,
+				id: data.id
+			})
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.sucess) {
+					originaltask = task;
+					update = false;
+				} else if (!res.sucess) {
+				} else if (res.notLoggedIn) {
+				}
+			})
+			.catch(() => alert('Failed to submit'));
+	};
 </script>
 
 <input

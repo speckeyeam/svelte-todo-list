@@ -23,14 +23,9 @@ export async function sessionValid(sessionId: string) {
 }
 
 export async function getTask(id: number, userId: string) {
-	const task = await prisma.todo.findFirst({ where: { id } });
-
-	if (task != null) {
-		if (task.userId == userId) {
-			return task;
-		} else {
-			return null;
-		}
+	const task = await prisma.todo.findUnique({ where: { id } });
+	if (task?.userId == userId) {
+		return task;
 	} else {
 		return null;
 	}

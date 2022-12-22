@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-
+//https://svelte.dev/tutorial/custom-stores use stores to make it less ED
 export const prerender = false;
 // load data from the database based on the request
 export const load: PageServerLoad = async ({ cookies }) => {
