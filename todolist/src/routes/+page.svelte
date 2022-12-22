@@ -1,6 +1,6 @@
 <script lang="ts">
-
-
+  import TodoList from "./components/todoList.svelte"
+  import type { ITodo } from "../types/todo"
 
 //https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
 /*
@@ -12,6 +12,11 @@ Storage.prototype.getObj = function(key) {
 }
 */
 let todolist: string[]= ["eat joshua soup", "eat joshua food"];
+let todos: ITodo[] = [
+  { id: '1e4a59703af84', text: 'Jude 1', completed: true},
+  { id: '9e09bcd7b9349', text: 'Jude 2', completed: true},
+  { id: '9e4273a51a37c', text: 'Jude 3', completed: false}
+];
 let count: number = 0;
 let error: boolean = false;
 let message: string;
@@ -99,6 +104,9 @@ alert("not logged in")
 
 </script>
 
+
+
+
 <input bind:value={value} type="text">
 <br>
 <br>
@@ -119,3 +127,6 @@ alert("not logged in")
 {/each}
 
 <p>{todolist}</p>
+
+
+<TodoList {todos}/>
