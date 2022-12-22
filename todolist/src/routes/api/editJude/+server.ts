@@ -13,29 +13,26 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	let valid;
 	let validtask;
 	const sessionId = cookies.get('sessionid') as string;
-	if (sessionId != null) {
-		valid = await sessionValid(sessionId);
-	}
+	console.log(list);
+	if (list.method) {
+		if (list.method == 'update') {
+			if (sessionId != null) {
+				valid = await sessionValid(sessionId);
+			}
+			let validtask = await getTask(list.id, sessionId);
 
-	console.log(validtask);
 	if (valid) {
 		const userId = String(valid);
-		validtask = await getTask(list.id, userId);
-		if (validtask) {
-			const updatelist = await prisma.todo.update({
-				where: { id: list.id },
-				data: { task: list.task }
-			});
-			if (!updatelist) {
-				return json({ sucess: false });
-			}
-		} else {
-			return json({ invalid: true });
+		const updatelist = await prisma.todo.update({
+			where: { id: list.id },
+			data: { task: list.task }
+		});
+		if (!updatelist) {
+			return json({ sucess: false });
 		}
 	} else {
-		return json({ notLoggedIn: true });
+		return json({ sucess: false });
 	}
-
 	return json({ sucess: true });
 
 	//return json(newList.value + " test");

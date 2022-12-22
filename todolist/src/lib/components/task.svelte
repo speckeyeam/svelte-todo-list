@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let nodeReference;
 	export let data: {};
 	let originaltask = data.task;
 	let task = data.task;
@@ -19,40 +20,86 @@
 		}
 	};
 
-	const updateTask = async () => {
-		fetch('/api/editJude', {
-			method: 'POST',
-			body: JSON.stringify({
-				task,
-				id: data.id
-			})
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				if (res.sucess) {
-					originaltask = task;
-					update = false;
-				} else if (!res.sucess) {
-				} else if (res.notLoggedIn) {
-				}
-			})
-			.catch(() => alert('Failed to submit'));
-	};
+    const updateTask = async () => {
+       
+    fetch("/api/editJude", {
+      method: "POST",
+      body: JSON.stringify({
+method: "update",
+task,
+id: data.id
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.sucess){
+        console.log("sucess")
+        originaltask = task
+        taskupdated();
+        
+      }
+      else if (!res.sucess){
+        console.log("sucess")
+      }
+      else if (res.notLoggedIn){
+        console.log("not logged in")
+      }
+      else{
+        console.log("something else")
+      }
+      
+    })
+    .catch(() => console.log('Failed to submit'))
+  }
+
+  const deleteTask = async () => {
+    nodeReference.parentNode.removeChild(nodeReference)
+       fetch("/api/editJude", {
+         method: "POST",
+         body: JSON.stringify({
+   method: "delete",
+   task,
+   id: data.id
+         })
+       })
+       .then(res => res.json())
+       .then(res => {
+         if (res.sucess){
+           
+           console.log("sucess")
+         }
+         else if (!res.sucess){
+           console.log("sucess")
+         }
+         else if (res.notLoggedIn){
+           console.log("not logged in")
+         }
+         else{
+            console.log("error")
+         }
+         
+       })
+       .catch(() => console.log('Failed to submit'))
+     }
+
 </script>
+<div bind:this={nodeReference} on:mouseenter={toggledelete} on:mouseleave={toggledelete} style ="padding-top: 1rem; padding-bottom: 1rem;">
+
 
 <input
 	bind:value={task}
 	on:input={taskupdated}
-	on:focusin={toggledelete}
+
 	style="make it not shit"
-	on:focusout={toggledelete}
+	
 />
 {#if deleteBtn}
-	<button>delete</button>
+	<button on:click={deleteTask}>delete</button>
 {/if}
 
 {#if update}
 	<button on:click={updateTask}>update</button>
 {/if}
 <br />
+</div>
 <slot />

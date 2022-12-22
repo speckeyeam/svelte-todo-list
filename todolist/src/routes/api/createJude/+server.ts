@@ -3,6 +3,7 @@ import type { RequestHandler } from './$types';
 import { sessionValid } from '$server/server';
 
 import { PrismaClient } from '@prisma/client';
+import { invalidate } from '$app/navigation';
 
 const prisma = new PrismaClient();
 

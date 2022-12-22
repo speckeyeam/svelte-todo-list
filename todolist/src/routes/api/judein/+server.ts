@@ -12,7 +12,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	const sessionId = cookies.get('sessionid');
 	console.log(sessionId);
 	if (sessionId != undefined) {
-		const session = await prisma.sessionId.findFirst({ where: { sessionId } });
+		const session = await prisma.SessionId.findFirst({ where: { sessionId } });
 		const userid = session?.userId;
 		if (userid != null) {
 			return json({ LoggedIn: true });

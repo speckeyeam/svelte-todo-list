@@ -8,8 +8,10 @@ const prisma = new PrismaClient();
 //https://svelte.dev/tutorial/custom-stores use stores to make it less ED
 export const prerender = false;
 // load data from the database based on the request
-export const load: PageServerLoad = async ({ cookies }) => {
+export const load = ( async ({cookies}) => {
+
 	try {
+		console.log('ran');
 		const sessionId = cookies.get('sessionid') as string;
 
 		const valid = await sessionValid(sessionId);
@@ -33,4 +35,4 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		console.log(e);
 		throw error(403, 'FORBIDDEN');
 	}
-};
+})satisfies PageLoad;
