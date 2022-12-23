@@ -12,46 +12,48 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 
 	let valid;
 	const sessionId = cookies.get('sessionid') as string;
-	console.log(list);
-	if (list.method) {
-		if (list.method == 'update') {
-			if (sessionId != null) {
-				valid = await sessionValid(sessionId);
-			}
-			const validtask = await getTask(list.id, sessionId);
 
-			if (valid && validtask) {
-				const userId = String(valid);
-				const updatelist = await prisma.todo.update({
-					where: { id: list.id },
-					data: { task: list.task }
-				});
-				if (!updatelist) {
-					return json({ sucess: false });
-				}
-			} else {
-				return json({ sucess: false });
-			}
-			return json({ sucess: true });
-
-			//return json(newList.value + " test");
+	if (list.update) {
+		if (sessionId != null) {
+			valid = await sessionValid(sessionId);
 		} else {
-			if (sessionId != null) {
-				valid = await sessionValid(sessionId);
-			}
+			return json({ sucess: false });
+		}
+		const validtask = await getTask(list.id, sessionId);
 
-			if (valid) {
-				const userId = String(valid);
-				const updatelist = await prisma.todo.delete({
-					where: { id: list.id }
-				});
-				if (!updatelist) {
-					return json({ sucess: false });
-				}
-			} else {
+		if (valid && validtask) {
+			console.log('test');
+			const userId = String(valid);
+			const updatelist = await prisma.todo.update({
+				where: { id: list.id },
+				data: { task: list.task }
+			});
+
+			if (!updatelist) {
 				return json({ sucess: false });
 			}
-			return json({ sucess: true });
+		} else {
+			return json({ sucess: false });
 		}
+		return json({ sucess: true });
+
+		//return json(newList.value + " test");
+	} else {
+		if (sessionId != null) {
+			valid = await sessionValid(sessionId);
+		}
+
+		if (valid) {
+			const userId = String(valid);
+			const updatelist = await prisma.todo.delete({
+				where: { id: list.id }
+			});
+			if (!updatelist) {
+				return json({ sucess: false });
+			}
+		} else {
+			return json({ sucess: false });
+		}
+		return json({ sucess: true });
 	}
 };

@@ -40,14 +40,13 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 			if (err) {
 				return json({ error: true });
 			}
-			if (res) {
-			} else {
+			if (!res) {
 				// response is OutgoingMessage object that server response http request
-				return json({ success: false, message: 'passwords do not match' });
+				return json({ success: false, message: 'incorrect credentials' });
 			}
 		});
 	} else {
-		return json({ EmailDoesNotExist: true });
+		return json({ success: false, message: 'incorrect credentials' });
 	}
 	const session = await prisma.sessionId.create({
 		data: {
