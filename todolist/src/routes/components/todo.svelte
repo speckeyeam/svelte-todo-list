@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { ITodo } from '../../types/todo'
     export let todo: ITodo
-    import '../../public/global.scss'
-    import '../../public/checkbox.scss'
+    import '../../public/global.css'
+    import '../../public/checkbox.css'
 
 </script>
 

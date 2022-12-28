@@ -2,8 +2,8 @@
     import type { ITodo } from '../../types/todo'
     export let todos: ITodo[]
     import Todo from "./todo.svelte"
-    import '../../public/global.scss'
-    import '../../public/checkbox.scss'
+    import '../../public/global.css'
+    import '../../public/checkbox.css'
 
 
 </script>

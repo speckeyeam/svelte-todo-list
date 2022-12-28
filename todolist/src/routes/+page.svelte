@@ -1,8 +1,8 @@
 <script lang="ts">
   import TodoList from "./components/todoList.svelte"
   import type { ITodo } from "../types/todo"
-  import '../../public/global.scss'
-  import '../../public/checkbox.scss'
+  import '../../public/global.css'
+  import '../../public/checkbox.css'
 //https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
 /*
 Storage.prototype.setObj = function(key, obj) {
