@@ -16,6 +16,7 @@ const config = {
 		alias:{
 			$components: path.resolve(__dirname,"./src/lib/components"),
 			$server: path.resolve(__dirname,"./src/lib/server"),
+			$stores: path.resolve(__dirname,"./src/lib/stores"),
 		}
 	}
 };

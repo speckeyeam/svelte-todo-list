@@ -3,7 +3,6 @@ import type { RequestHandler } from './$types';
 import { z } from 'zod';
 import * as bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
-
 const prisma = new PrismaClient();
 
 export const POST: RequestHandler = async ({ cookies, request }) => {
