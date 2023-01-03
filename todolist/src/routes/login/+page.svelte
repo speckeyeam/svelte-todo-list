@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { isLoggedIn } from '$stores/stores';
+	import { goto } from '$app/navigation';
 	let email: string;
 	let password: string;
 	const logIn = async () => {
@@ -13,8 +14,8 @@
 			.then((res) => res.json())
 			.then((res) => {
 				if (res.sucess) {
-					alert('sucess');
 					isLoggedIn.toggle("true")
+					goto("/myjude")
 				} else if (res.LoggedIn) {
 					alert('logged in');
 				} else if (res.emailUsed) {
