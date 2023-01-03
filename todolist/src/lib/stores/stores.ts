@@ -10,6 +10,7 @@ const createWritableStore = () => {
 		toggle: (value: string) => {
 			if (browser) {
 				localStorage.isLoggedIn = value;
+				set(value);
 			}
 		}
 	};
