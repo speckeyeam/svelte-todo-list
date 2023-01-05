@@ -1,8 +1,12 @@
 <script lang="ts">
-  import TodoList from "./components/todoList.svelte"
+import TodoList from "./components/todoList.svelte"
   import type { ITodo } from "../types/todo"
   import '../../public/global.css'
   import '../../public/checkbox.css'
+
+  import Header from '$components/header.svelte';
+import { isLoggedIn } from '$stores/stores';
+
 //https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
 /*
 Storage.prototype.setObj = function(key, obj) {
@@ -37,7 +41,7 @@ value: "jude"
     .then(res => res.json())
     .then(res => {
       if (res.sucess){
-        alert("sucess")
+        isLoggedIn.toggle("true")
       }
       else if (res.notLoggedIn){
         error = true;
@@ -90,13 +94,7 @@ value
     })
     .then(res => res.json())
     .then(res => {
-      if (res.sucess){
-alert("sucess")
-      }
-      else if (res.notLoggedIn){
-alert("not logged in")
-      }
-      
+      isLoggedIn.toggle("false")
     })
     .catch(() => alert('Failed to submit'))
 
@@ -104,9 +102,6 @@ alert("not logged in")
   }
 
 </script>
-
-
-
 
 <input bind:value={value} type="text">
 <br>

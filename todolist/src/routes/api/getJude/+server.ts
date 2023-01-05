@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { sessionValid, getTask } from '$server/server';
-
+    import { isLoggedIn } from '$stores/stores';
 import { PrismaClient } from '@prisma/client';
 import Task from '$components/task.svelte';
 import { sortUserPlugins } from 'vite';

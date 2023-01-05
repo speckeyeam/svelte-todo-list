@@ -3,7 +3,7 @@ import type { RequestHandler } from './$types';
 import { z } from 'zod';
 import * as bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
-
+import authStore from '$stores/stores';
 const prisma = new PrismaClient();
 
 export const POST: RequestHandler = async ({ cookies, request }) => {
@@ -68,7 +68,10 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 		sameSite: true,
 		httpOnly: true
 	});
-
+	authStore.set({
+		isLoggedIn: true,
+		user: user
+	});
 	//should prob check other stuff just in case
 	return json({ sucess: true });
 	//return json(newList.value + " test");

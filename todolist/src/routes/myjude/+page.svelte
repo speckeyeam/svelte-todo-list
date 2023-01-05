@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import Task from '$components/task.svelte';
-
+  import Header from '$components/header.svelte';
+  
 	export let data: PageData;
 	let value: string;
 	const handleSubmit = async () => {
@@ -49,6 +50,7 @@ value
     .catch(() => alert('Failed to submit'))
   }
 </script>
+<Header />
 <input bind:value={value} type="text">
 <br>
 
