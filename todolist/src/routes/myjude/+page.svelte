@@ -2,7 +2,9 @@
 	import type { PageData } from './$types';
 	import Task from '$components/task.svelte';
   import Header from '$components/header.svelte';
-  
+  import '../../styles/global.scss'
+  import '../../styles/addTaskInput.scss'
+
 	export let data: PageData;
 	let value: string;
 	const handleSubmit = async () => {
@@ -49,15 +51,27 @@ value
     })
     .catch(() => alert('Failed to submit'))
   }
+
+
+
+
+
+ 
 </script>
 <Header />
-<input bind:value={value} type="text">
+
+<div class="addTask-cn">
+  <input name="newTaskInput" id="newTaskInput" placeholder="Add Task" bind:value={value} type="input" class="newTaskInput">
+  <label for="newTaskInput" class="addTask-label">Add Task</label>
+  <!-- <button on:click={handleSubmit}>submit</button> -->
+</div>
+
 <br>
 
-<button on:click={handleSubmit}>submit</button>
+<div class="todos-cn">
+  <h2>Your tasks</h2>
 
-<h2>Your tasks</h2>
-
-{#each data.data as task, i}
-	<Task data={task} />
-{/each}
+  {#each data.data as task, i}
+    <Task data={task} />
+  {/each}
+</div>

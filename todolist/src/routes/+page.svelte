@@ -1,8 +1,8 @@
 <script lang="ts">
-import TodoList from "./components/todoList.svelte"
+import TodoList from "../components/todoList.svelte"
   import type { ITodo } from "../types/todo"
-  import '../../public/global.css'
-  import '../../public/checkbox.css'
+  import '../styles/global.scss'
+  import '../styles/addTaskInput.scss'
 
   import Header from '$components/header.svelte';
 import { isLoggedIn } from '$stores/stores';

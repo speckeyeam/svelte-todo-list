@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { ITodo } from '../types/todo'
     export let todo: ITodo
-    import '../css/global.css'
+    import '../styles/global.scss'
 
 </script>
 

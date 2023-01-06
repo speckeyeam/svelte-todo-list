@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	export let data: {};
     import { onDestroy } from 'svelte';
     import { browser } from "$app/environment"
@@ -24,12 +23,16 @@ value: "balls"
   
   }
 </script>
-{#if $isLoggedIn == "true"}
-<div style = "display: absolute; width: 100%; height: 5%; background-color: whitesmoke;">
-    joshua logged in   <button on:click={signOut}>Sign Out</button>
-</div>
-{:else}
-<div style = "display: absolute; width: 100%; height: 5%; background-color: whitesmoke;">
-    joshua not logged in   <a href = "/login"> <button>Log in</button></a><a href = "/signup"><button>Sign up</button></a>
-</div>
-{/if}
+  {#if $isLoggedIn == "true"}
+  <div class="header" >
+      joshua logged in   <button on:click={signOut}>Sign Out</button>
+  </div>
+  {:else}
+  <div class="header flex" style = "width: 100%; height: 5%;">
+      <p class="message"> joshua not logged in   </p>
+      <div>
+        <a href = "/login"> <button>Log in</button></a><a href = "/signup"><button>Sign up</button></a>
+      </div>
+  </div>
+  {/if}
+

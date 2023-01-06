@@ -2,9 +2,7 @@
     import type { ITodo } from '../types/todo'
     export let todos: ITodo[]
     import Todo from "./todo.svelte"
-    import '../css/global.css'
-
-
+    import '../styles/global.scss'
 </script>
 
 

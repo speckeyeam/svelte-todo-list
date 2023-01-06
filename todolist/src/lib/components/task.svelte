@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let nodeReference;
 	export let data: {};
+	import '../../styles/global.scss'
 	let originaltask = data.task;
 	let task = data.task;
 	let update: boolean = false;
@@ -70,15 +71,17 @@
 			})
 			.catch(() => console.log('Failed to submit'));
 	};
+
+
 </script>
 
 <div
 	bind:this={nodeReference}
 	on:mouseenter={toggledelete}
 	on:mouseleave={toggledelete}
-	style="padding-top: 1rem; padding-bottom: 1rem;"
+	style="padding-top: 1rem; padding-bottom: 1rem;" class="task-cn"
 >
-	<input bind:value={task} on:input={taskupdated} style="make it not shit" />
+	<input name="taskInput" class:completed={task.completed} bind:value={task} on:input={taskupdated} />
 	{#if deleteBtn}
 		<button on:click={deleteTask}>delete</button>
 	{/if}
