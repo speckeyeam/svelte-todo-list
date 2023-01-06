@@ -1,0 +1,56 @@
+.body {
+    background-image: url("https://media.istockphoto.com/id/974079490/photo/jungle-leaves-background.jpg?s=170667a&w=0&k=20&c=yAjOu8rWodR9Nqc_Lk9MMFe26v2KLAILYoDo_X6OnYo=");
+    
+}
+.login-cn {
+    gap: 20px;
+    max-width: 350px;
+    height: fit-content;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.login-title {
+    margin-bottom: 10px;
+}
+.login-cn button {
+    padding: 0.7rem 2rem;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+.email-btn {
+    background-color: #6affe4cf;
+    border: 1px solid #27a798;
+    color: #146259;
+}
+.login-cn img {
+    height: 20px;
+}
+.login-cn .line-divider {
+    margin: 10px;
+    position: relative;
+}
+.line-divider p {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: -960%;
+    background-color: #10332E;
+    width: 40px;
+    text-align: center;
+}
+.login-cn input {
+    padding: 0.7rem 1rem;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+.login-cn label {
+    font-size: 14px;
+    margin-right: auto;
+    margin-bottom: -10px;
+}
+
