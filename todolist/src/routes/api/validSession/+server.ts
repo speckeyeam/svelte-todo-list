@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export const POST: RequestHandler = async ({ cookies, request }) => {
 	const newList = await request.json();
-
+	console.log('test');
 	const sessionId = cookies.get('sessionid');
 
 	if (sessionId !== undefined || sessionId != 'jude') {
