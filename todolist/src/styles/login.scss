@@ -1,6 +1,21 @@
-.body {
-    background-image: url("https://media.istockphoto.com/id/974079490/photo/jungle-leaves-background.jpg?s=170667a&w=0&k=20&c=yAjOu8rWodR9Nqc_Lk9MMFe26v2KLAILYoDo_X6OnYo=");
-    
+body {
+    background-image: url("../routes/login/leavesbackground2.jpeg");
+    background-size: auto 100vw;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 1100vw;
+    // transition: all 250ms ease-in-out, transform 150ms ease;
+}
+@media all and (max-width: 900px) {
+    body {
+        background-size: contain;
+    }
+}
+.backgroundfilter {
+    position: absolute;
+    background-color: #0f1c1ac3;
+    width: 100vw;
+    height: 100vh;
 }
 .login-cn {
     gap: 20px;
@@ -21,10 +36,17 @@
     width: 100%;
     justify-content: center;
 }
+.continuewith {
+    background-color: rgba(255, 255, 255, 0.948);
+}
 .email-btn {
-    background-color: #6affe4cf;
-    border: 1px solid #27a798;
-    color: #146259;
+    background-color: #0edeb8;
+    // border: 1px solid #27a798;
+    font-weight: 800;
+    color: #102c29;
+}
+.email-btn:hover {
+    background-color: #11b597;
 }
 .login-cn img {
     height: 20px;
