@@ -1,11 +1,30 @@
 <script lang="ts">
 	export let data: {};
-    import { onDestroy } from 'svelte';
+    import { onDestroy,  onMount} from 'svelte';
     import { browser } from "$app/environment"
     import { goto } from '$app/navigation';
     let loggedIn: String;
     import { isLoggedIn } from '$stores/stores';
 
+    onMount(async () => {
+      fetch("/api/validSession", {
+      method: "POST",
+      body: JSON.stringify({
+value: "balls"
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.sucess){
+        isLoggedIn.toggle("true")
+      }
+      else{
+        isLoggedIn.toggle("false")
+      }
+      
+    })
+    .catch(() => alert('Failed to submit'))
+	});
     const signOut = async () =>{
     fetch("/api/judeout", {
       method: "POST",
