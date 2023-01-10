@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getTask, sessionValid } from '$server/server';
 
-export const load: PageServerLoad = async ({ params, cookies }) => {
+export const load = ( async ({params, cookies}) => {
 	let valid;
 	const sessionId = cookies.get('sessionid');
 	if (sessionId != null) {
@@ -26,4 +26,4 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 	}
 
 	throw error(404, 'Not found');
-};
+})satisfies PageServerLoad;
