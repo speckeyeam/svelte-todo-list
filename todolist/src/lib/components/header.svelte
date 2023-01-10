@@ -1,5 +1,5 @@
 <script lang="ts">
-
+//https://stackoverflow.com/questions/68041262/how-to-avoid-showing-loading-state-after-the-initial-load-in-svelte
 	export let data: {};
     import { onDestroy,  onMount} from 'svelte';
     import { browser } from "$app/environment"
