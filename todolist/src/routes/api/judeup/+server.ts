@@ -6,7 +6,7 @@ import { PrismaClient } from '@prisma/client';
 import authStore from '$stores/stores';
 const prisma = new PrismaClient();
 
-export const POST: RequestHandler = async ({ cookies, request }) => {
+export const POST = (async ({ cookies, request }) => {
 	const data = await request.json();
 
 	const sessionId = cookies.get('sessionid');
@@ -75,4 +75,4 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 	//should prob check other stuff just in case
 	return json({ sucess: true });
 	//return json(newList.value + " test");
-};
+}) satisfies RequestHandler;
