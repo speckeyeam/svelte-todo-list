@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import Task from '$components/task.svelte';
   import Header from '$components/header.svelte';
+  import AddTaskButton from "$components/addTask.svelte"
   import '../../styles/global.scss'
   import '../../styles/addTaskInput.scss'
 
@@ -12,7 +13,7 @@
     fetch("/api/createJude", {
       method: "POST",
       body: JSON.stringify({
-value
+        value
       })
     })
     .then(res => res.json())
@@ -60,18 +61,29 @@ value
 </script>
 <Header />
 
-<div class="addTask-cn">
-  <input name="newTaskInput" id="newTaskInput" placeholder="Add Task" bind:value={value} type="input" class="newTaskInput">
-  <label for="newTaskInput" class="addTask-label">Add Task</label>
-  <!-- <button on:click={handleSubmit}>submit</button> -->
+
+<div class="todolist">
+  <h2>Your tasks</h2>
+
+  <AddTaskButton bind:value={value} on:message={handleSubmit} />
+  <div class="todos-cn">
+  
+    {#each data.data as task, i}
+      <Task data={task} />
+    {/each}
+  </div>
 </div>
 
 <br>
 
-<div class="todos-cn">
-  <h2>Your tasks</h2>
 
-  {#each data.data as task, i}
-    <Task data={task} />
-  {/each}
-</div>
+
+<style>
+  .todolist {
+    width: 500px;
+    margin: auto;
+  }
+  h2 {
+    padding: 20px 15px;
+  }
+</style>

@@ -12,6 +12,9 @@ $white2-color: #D9D9D9; */
     // font-family: 'GFS Didot', serif;
     font-family: 'Questrial', sans-serif;
 }
+body {
+    background-image: none;
+}
 button {
     background-color: #f0eeee;
     display: inline-block;
@@ -59,11 +62,15 @@ body {
 .vert {
     flex-direction: column;
 }
+
 input[type="password"],
-input[type="email"] {
-    color:#10332E;
-    background-color: rgb(202, 204, 200);
-    border: none;
+input[type="text"],
+input[type="email"]  {
+    outline: none;
+    box-shadow: none;
+    color:#f1f1f1;
+    background-color: rgba(202, 204, 200, 0.177);
+    border: 1px solid #10332E;
     border-radius: 5px;
 }
 
@@ -96,32 +103,7 @@ input[type="checkbox"] {
 }
 
 
-.newTask-cn {
-    // height: 20px;
-    // width: fit-content;
-    // margin: 40px auto;
-    // position: relative;
-
-    position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 50%;
-}
 
 
-.completed {
-    opacity: 0.5;
-    text-decoration: line-through;
-}
-.task-cn {
-    /* border: 1px solid black; */
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-}
-.task-cn .left-cn {
-    gap: 16px;
-}
-.task-cn .right-cn {
-    align-items: flex-start;
-}
+
+

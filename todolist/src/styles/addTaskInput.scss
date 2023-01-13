@@ -4,11 +4,11 @@ $white: #fff;
 $gray: #9b9b9b;
 .addTask-cn {
   position: relative;
-  padding: 15px 0 0;
   margin-top: 10px;
   width: 280px;
   background-color: #1C3C38;
   border-radius: 10px;
+  width: 500px;
 }
 
 .addTask-cn input {
@@ -17,45 +17,52 @@ $gray: #9b9b9b;
   height: 56px;
   border: 0;
   outline: 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: $white;
   background: transparent;
   transition: border-color 0.2s;
   padding-left: 15px;
   &::placeholder {
-    color: transparent;
+    display: none;
   }
 
   &:placeholder-shown ~ .addTask-label {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     cursor: text;
-    top: 22px;
   }
 }
 
 .addTask-cn .addTask-label{
+  background-color: #11998e00;
+  padding: 0;
   position: absolute;
-  top: 0;
-  left: 15px;
+  left: 20px;
   display: block;
   transition: 0.2s;
   font-size: 1rem;
   color: $gray;
 }
 
-.addTask-cn input:focus {
+.addTask-cn input:focus,
+.addTask-cn input:not(:placeholder-shown) {
   ~ .addTask-label {
+    background-color: rgb(217, 217, 217);
+    height: 100%;
+    width: 100px;
+    padding: 0 10px;
     position: absolute;
-    top: 0;
     display: block;
+    left: 80%;
     transition: 0.2s;
     font-size: 1rem;
-    color: $primary;
+    color: #1C3C38;
+    cursor: pointer;
   }
   font-weight: 700;
   border-width: 3px;
   // border-image: linear-gradient(to right, $primary,$secondary);
   border-image-slice: 1;
+
 }
 /* reset input */
 .task-cn input{

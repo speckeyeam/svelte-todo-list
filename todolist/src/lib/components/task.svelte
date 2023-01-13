@@ -75,13 +75,14 @@
 
 </script>
 
-<div
+<div 
 	bind:this={nodeReference}
 	on:mouseenter={toggledelete}
 	on:mouseleave={toggledelete}
 	style="padding-top: 1rem; padding-bottom: 1rem;" class="task-cn"
 >
-	<input name="taskInput" class:completed={task.completed} bind:value={task} on:input={taskupdated} />
+	<input type="checkbox">
+	<input name="taskInput" type="text" class="taskInput" class:completed={task.completed} bind:value={task} on:input={taskupdated} />
 	{#if deleteBtn}
 		<button on:click={deleteTask}>delete</button>
 	{/if}
@@ -92,3 +93,46 @@
 	<br />
 </div>
 <slot />
+<style>
+
+	input.taskInput {
+		pointer-events: none;
+		background-color: rgba(255, 255, 255, 0);
+		padding: 0.7rem 1rem;
+		gap: 12px;
+		width: 100%;
+		justify-content: center;
+		border: none;
+		border-radius: 0;
+	}
+	.task-cn:hover {
+		background-color: #3c645e91;
+	}
+
+	input.taskInput.editmode {
+		pointer-events: all;
+	}
+
+
+
+
+.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+.task-cn {
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+	display: flex;
+	height: 50px;
+	border-bottom: 1px solid black;
+	width: 100%;
+}
+
+
+	
+  
+
+
+</style>
