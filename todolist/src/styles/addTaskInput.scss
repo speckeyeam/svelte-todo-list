@@ -11,7 +11,7 @@ $gray: #9b9b9b;
   width: 500px;
 }
 
-.addTask-cn input {
+.addTask-cn #newTaskInput {
   font-family: inherit;
   width: 100%;
   height: 56px;
@@ -43,8 +43,8 @@ $gray: #9b9b9b;
   color: $gray;
 }
 
-.addTask-cn input:focus,
-.addTask-cn input:not(:placeholder-shown) {
+.addTask-cn #newTaskInput:focus,
+.addTask-cn #newTaskInput:not(:placeholder-shown) {
   ~ .addTask-label {
     background-color: rgb(217, 217, 217);
     height: 100%;
@@ -65,7 +65,7 @@ $gray: #9b9b9b;
 
 }
 /* reset input */
-.task-cn input{
+.task-cn #newTaskInput{
   &:required,&:invalid { box-shadow:none; }
 }
 /* demo */

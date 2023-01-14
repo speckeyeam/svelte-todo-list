@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let data: {};
     import { onDestroy,  onMount} from 'svelte';
     import { browser } from "$app/environment"
     import { goto } from '$app/navigation';

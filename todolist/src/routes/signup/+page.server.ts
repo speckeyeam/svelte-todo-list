@@ -73,3 +73,5 @@ export const actions: Actions = {
 		//console.log('WHAT DO I DO WITH THIS COOPER' + user.id);
 	}
 };
+
+export const prerender = false;

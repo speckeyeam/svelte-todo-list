@@ -1,5 +1,5 @@
 body {
-    background-color: #0b1c1b;
+    background-color: #0c2420;
 }
 .backgroundfilter {
     position: absolute;
@@ -40,17 +40,17 @@ li {
 .continuewith {
     background-color: rgba(255, 255, 255, 0.948);
 }
-.email-btn {
+input[type="submit"].email-btn {
     background-color: #0edeb8;
     // border: 1px solid #27a798;
     font-weight: 800;
     color: #102c29;
 }
-.email-btn a {
+input[type="submit"].email-btn a {
     color: #102c29;
     text-decoration: none;
 }
-.email-btn:hover {
+input[type="submit"].email-btn:hover {
     background-color: #11b597;
 }
 .card-wrapper img {

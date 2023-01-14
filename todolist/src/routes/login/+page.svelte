@@ -10,6 +10,7 @@
 	let email: string;
 	let password: string;
 	const logIn = async () => {
+		document.getElementById
 		fetch('/api/judein', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -24,6 +25,7 @@
 					goto("/myjude")
 				} else if (res.LoggedIn) {
 					alert('logged in');
+					goto("/myjude")
 				} else if (res.emailUsed) {
 					alert('email used');
 				} else if (res.usernameUsed) {
@@ -35,6 +37,7 @@
 				}
 			})
 			.catch(() => alert('Failed to submit'));
+
 	};
 
 
@@ -59,13 +62,13 @@
 		</div>
 		<li>
 			<label for="email">Email</label>
-			<input bind:value={email} name="email" type="email" />
+			<input bind:value={email} name="email" type="email" required/>
 		</li>
 		<li>
 			<label for="password">Password</label>
-			<input id="passwordInput" bind:value={password} name="password" type="password" />
+			<input id="passwordInput" bind:value={password} name="password" type="password" required/>
 		</li>
-		<button class="flex email-btn" on:click={logIn}><a href="/myjude">Continue with email</a> </button>
+		<button class="flex email-btn" on:click={logIn}>Continue with email</button>
 		<p>New to Jude? <a href = "/signup">Sign Up</a></p>
 	</div>
 </div>

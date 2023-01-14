@@ -15,7 +15,8 @@ $white2-color: #D9D9D9; */
 body {
     background-image: none;
 }
-button {
+button,
+input[type="submit"] {
     background-color: #f0eeee;
     display: inline-block;
     border: none;
@@ -65,13 +66,15 @@ body {
 
 input[type="password"],
 input[type="text"],
-input[type="email"]  {
+input[type="email"] ,
+input[type="submit"] {
     outline: none;
     box-shadow: none;
     color:#f1f1f1;
     background-color: rgba(202, 204, 200, 0.177);
     border: 1px solid #10332E;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 input[type="checkbox"] {
@@ -99,11 +102,26 @@ input[type="checkbox"] {
 }
 .header .message {
     opacity: 0.8;
-   
 }
 
 
 
 
-
-
+#error-message-cn {
+    width: 100%;
+    background-color: rgb(222, 127, 127);
+    padding: 10px 15px;
+    gap: 15px;
+    border-radius: 4px;
+    display: none;
+}
+#error-message-cn > * {
+    color: #10332E;
+}
+.close-btn {
+    cursor: pointer;
+    margin-left: auto;
+}
+#error-message-cn.show  {
+    display: flex;
+}
