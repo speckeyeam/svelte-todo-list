@@ -16,6 +16,11 @@ value
     .then(res => res.json())
     .then(res => {
       if (res.sucess){
+        let element = {}
+element.task= value;
+data.data.push(element);
+data.data = data.data
+        data.data
         reloadData();
       }
       else if (res.notLoggedIn){
@@ -28,7 +33,7 @@ value
   }
 
   const reloadData = async () => {
-    
+    /*
     
     fetch("/api/getJude", {
       method: "POST",
@@ -48,6 +53,7 @@ value
       
     })
     .catch(() => alert('Failed to submit'))
+    */
   }
 </script>
 <Header />
