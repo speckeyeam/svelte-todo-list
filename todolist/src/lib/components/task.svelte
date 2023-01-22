@@ -7,6 +7,7 @@
 	let update: boolean = false;
 	let deleteBtn: boolean = false;
 	let completed: boolean = false;
+	let moreMenuClicked: boolean = false;
 	const taskupdated = async () => {
 		if (originaltask != task) {
 			update = true;
@@ -51,7 +52,7 @@
 
 	const deleteTask = async () => {
 		completed = true
-		await delay(1000);
+		await delay(500);
 		nodeReference.parentNode.removeChild(nodeReference);
 		fetch('/api/editJude', {
 			method: 'POST',
@@ -77,20 +78,44 @@
 	};
 
 
+
+	const listItems = document.querySelectorAll('.task-cn');
+
+	// function calculateHeightOfListContainer(){
+	// 	const firstListItem = listItems[0];
+	// 	let heightOfListItem = firstListItem.clientHeight;
+	// 	const styleTag = document.createElement('style');
+	// 	document.body.prepend(styleTag);
+	// 	styleTag.innerHTML = `.list-container{
+	// 		height: ${heightOfListItem}px;
+	// 	}`;
+	// };
+
+	// calculateHeightOfListContainer();
+
+		
+
 </script>
 
 <div 
 	bind:this={nodeReference}
 	on:mouseenter={toggledelete}
 	on:mouseleave={toggledelete}
-	style="padding-top: 1rem; padding-bottom: 1rem;" class="task-cn"
+	style="padding-top: 1rem; padding-bottom: 1rem;" class="task-cn" class:completed={completed}
 >
-	<input id={task} type="checkbox" on:click={deleteTask}>
+	<input class="task-checkbox" id={task} type="checkbox" on:click={deleteTask}>
 	<label for={task}></label>
-	<input name="taskInput" type="text" class="taskInput" class:completed={completed} bind:value={task} on:input={taskupdated} />
+	<input name="taskInput" type="text" class="taskInput" bind:value={task} on:input={taskupdated} />
 	{#if deleteBtn}
-		<i class="fa-solid fa-ellipsis"></i>
-		<!-- <button class="deleteBtn" on:click={deleteTask}>delete</button> -->
+		<div class="right">
+			<i class="fa-solid fa-ellipsis" on:click|once={() => { moreMenuClicked = true;}}></i>
+			<div id="moremenu" class:active={ moreMenuClicked }>
+				<li><i class="fa-solid fa-pen"></i></li>
+				<li><i class="fa-solid fa-trash"></i></li>
+			</div>	
+			<!-- <button class="deleteBtn" on:click={deleteTask}>delete</button> -->
+		</div>
+		
 	{/if}
 	{#if update}
 		<button class="updateBtn" on:click={updateTask}>update</button>
@@ -99,6 +124,15 @@
 </div>
 <slot />
 <style>
+	#moremenu {
+		display: none;
+	}
+	#moremenu.active {
+		display: flex;
+	}
+
+
+
 	input.taskInput {
 		pointer-events: none;
 		background-color: rgba(255, 255, 255, 0);
@@ -110,6 +144,15 @@
 		border-radius: 0;
 		transition: all 250ms cubic-bezier(.4,.0,.23,1);
 		font-size: 0.8rem;
+		position: absolute;
+		left: 40px;
+	}
+	div.right {
+		list-style: none;
+		position: absolute;
+		right: 20px;
+		display: flex;
+		gap: 10px;
 	}
 	i {
 		cursor: pointer;
@@ -120,47 +163,129 @@
 	input[type="checkbox"] {
 		display: none;
 	}
-	input[type='checkbox'] + label {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-right: 1em;
-		width: 1em;
-		height: 1em;
-		background: transparent;
-		border: 2px solid #9E9E9E;
-		border-radius: 2px;
-		cursor: pointer;  
-		transition: all 250ms cubic-bezier(.4,.0,.23,1);
-		}
-	.completed {
-		opacity: 0.5;
-		text-decoration: line-through;
+	
+	input[type='checkbox']:hover + label {
+		background: rgba(255,255,255,.1);
 	}
 	.task-cn {
 		align-items: center;
 		justify-content: space-between;
 		padding: 20px;
 		display: flex;
-		height: 50px;
-		border-bottom: 1px solid black;
+		height: 40px;
+		border-radius: 8px;
 		width: 100%;
 		position: relative;
 		transition: all ease-in 0.2s;
 	}
+	.task-cn::after {
+		content: "";
+		position: absolute;
+		bottom: 0%;
+		left: 0%;
+		width:98%;
+		height: 1px;
+		background-color: #3c645e39;
+	}
 	.task-cn:hover {
-		background-color: #3c645e91;
+		background-color: #3c645e39;
 	}
 	.updateBtn,
 	.deleteBtn {
 		position: absolute;
 		right: 0;
 	}
-	
-	@keyframes strike{
-		0%   { width : 0; }
-		100% { width: 100%; }
+	input[type='checkbox'] + label {
+		display: flex;
+		position: absolute;
+		justify-content: center;
+		align-items: center;
+		margin-right: 1em;
+		width: 1.2em;
+		height:1.2em;
+		background: transparent;
+		border: 2px solid #9E9E9E;
+		border-radius: 2px;
+		cursor: pointer;  
+		transition: all 250ms cubic-bezier(.4,.0,.23,1);
+	}
+	input[type='checkbox']:checked + label {
+		border: .6em solid white;
+		text-decoration: line-through;  	
+		animation: shrink-bounce 200ms cubic-bezier(.4,.0,.23,1);
+		/* animation: removed-item-animation .5s cubic-bezier(.65,-0.02,.72,.29); */
+	}
+	input[type="checkbox"]:checked + label:before {
+		content: "";
+		position: absolute;
+		bottom: 50%;
+		right: 50%;
+		border-right: 3px solid transparent;
+		border-bottom: 3px solid transparent;
+		transform: rotate(45deg), translate(-50%, -50%);
+		transform-origin: 0% 100%;
+		animation: checkbox-check 125ms 250ms cubic-bezier(.4,.0,.23,1) forwards;	}
+	.completed  {
+		text-decoration: line-through;
+		/* animation: removed-item-animation .5s cubic-bezier(.65,-0.02,.72,.29); */
 	}
 
+	@keyframes removed-item-animation {
+		0% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+
+		20% {
+			opacity: 1;
+			transform: translateX(50px);
+		}
+
+		50% {
+			opacity: 1;
+			transform: translateX(-800px);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(-800px);
+		}
+	}
+	@keyframes shrink-bounce{
+		0%{
+			transform: scale(1);
+		}
+		33%{    
+			transform: scale(.85);
+		}
+		100%{
+			transform: scale(1);    
+		}
+	}
+	@keyframes checkbox-check{
+		0%{
+			width: 0;
+			height: 0;
+			border-color: #212121;
+			transform: translate3d(0,0,0) rotate(45deg);
+		}
+		33%{
+			width: .2em;
+			height: 0;
+			transform: translate3d(0,0,0) rotate(45deg);
+		}
+		100%{    
+			width: .2em;
+			height: .5em;    
+			border-color: #212121;
+			transform: translate3d(0,0,0) rotate(45deg);
+		}
+	}
+
+	label:before {
+	}
+	label:before {
+		
+	}
 
 </style>

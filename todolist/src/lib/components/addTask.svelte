@@ -49,4 +49,7 @@
         0px 9px 46px 8px hsla(0,0%,0%,0.12), 
         0px 11px 15px -7px hsla(0,0%,0%,0.2);
     }
+    .addTask-label {
+        pointer-events: none;
+    }
   </style>

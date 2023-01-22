@@ -7,9 +7,9 @@
 
 
 <div class="todolist-cn">
-    {#each todos as todo (todo.id)}
+    <!-- {#each todos as todo (todo.id)}
         <Todo {todo}/>
-    {/each}
+    {/each} -->
 </div>
 
 <style>
