@@ -3,14 +3,16 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Todo {
   id     Int    @id @unique @default(autoincrement())
   task   String
   userId String
+  before Int
+  after  Int
   User   User   @relation(fields: [userId], references: [id])
 }
 
@@ -19,7 +21,7 @@ model User {
   email    String      @unique
   password String
   username String      @unique
-  sessoins SessionId[]
+  sessions SessionId[]
   todos    Todo[]
 }
 
