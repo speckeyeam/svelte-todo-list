@@ -7,14 +7,28 @@ const ENDPOINT = 'http://localhost:2000';
 
 const socket = ioClient(ENDPOINT);
 const io = socket;
+
 	let textfield = '';
 	let username = '';
 
 	let messages: any = [];
 
 	onMount(() => {
+		
+		io.on("connect", function () {
+   		io.emit("joinChannel", {
+        channel: "jude1"
+    	});
+		});
+
 		io.on('message', (message) => {
 			// Listen to the message event
+			if (message.channel == "jude1"){
+				console.log("PROPER JUDE")
+			}
+			else{
+				alert(message.channel)
+			}
 			messages = [...messages, message];
 		});
 		io.on('name', (name) => {

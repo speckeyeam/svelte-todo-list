@@ -21,6 +21,14 @@ server.listen(PORT, () => {
 });
 
 io.on('connection', (socket) => {
+	(socket as any).channel = '';
+
+	// When the client joins a channel, save it to the socket
+	socket.on('joinChannel', function (data) {
+		(socket as any).channel = data.channel;
+		console.log((socket as any).channel);
+	});
+
 	// Generate a random username and send it to the client to display it
 	let username = `User ${Math.round(Math.random() * 999999)}`;
 	socket.emit('name', username);
@@ -28,6 +36,7 @@ io.on('connection', (socket) => {
 	// Receive incoming messages and broadcast them
 	socket.on('message', (message) => {
 		io.emit('message', {
+			channel: (socket as any).channel,
 			from: username,
 			message: message,
 			time: new Date().toLocaleString()
