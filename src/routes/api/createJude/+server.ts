@@ -15,18 +15,18 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 		valid = await sessionValid(sessionId);
 	}
 
-	if (valid != undefined) {
-		if (valid != null) {
-			const userid = String(valid);
-			const list = await prisma.todo.create({
-				data: {
-					userId: userid,
-					task: newList.value
+	if (valid) {
+		const userid = String(valid);
+		const list = await prisma.todo.create({
+			data: {
+				task: newList.value,
+				User: {
+					connect: {
+						id: userid
+					}
 				}
-			});
-		} else {
-			return json({ notLoggedIn: true });
-		}
+			}
+		});
 	} else {
 		return json({ notLoggedIn: true });
 	}

@@ -19,7 +19,7 @@ export const load = ( async ({cookies}) => {
 			const userId = valid;
 			const user = await prisma.user.findUnique({
 				where: { id: userId },
-				include: { todos: true }
+				include: { todos: true}
 			});
 			if (user != null) {
 				return {

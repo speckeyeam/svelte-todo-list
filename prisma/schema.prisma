@@ -11,8 +11,8 @@ model Todo {
   id     Int    @id @unique @default(autoincrement())
   task   String
   userId String
-  before Int
-  after  Int
+  before Int    @default(0)
+  after  Int    @default(0)
   User   User   @relation(fields: [userId], references: [id])
 }
 

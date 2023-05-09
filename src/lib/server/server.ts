@@ -10,7 +10,7 @@ export async function sessionValid(sessionId: string) {
 
 			if (Number(expiration) <= Date.now()) {
 				await prisma.sessionId.deleteMany({ where: { sessionId } });
-				return false;
+				return null;
 			} else {
 				return userId;
 			}

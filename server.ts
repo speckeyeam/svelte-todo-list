@@ -7,6 +7,7 @@ import { Server } from 'socket.io';
 const io = new Server(server, { cors: { origin: '*' } });
 import cors from 'cors';
 import compression from 'compression';
+import { sessionValid } from '$server/server';
 
 const __dirname = resolve();
 
@@ -21,12 +22,17 @@ server.listen(PORT, () => {
 });
 
 io.on('connection', (socket) => {
-	(socket as any).channel = '';
-
+	(socket as any).userid = '';
+	(socket as any).listid = '';
 	// When the client joins a channel, save it to the socket
-	socket.on('joinChannel', function (data) {
-		(socket as any).channel = data.channel;
-		console.log((socket as any).channel);
+	socket.on('joinChannel', async function (data) {
+		const session = await sessionValid(data.userid);
+		if (session) {
+			(socket as any).userid = data.userid;
+			(socket as any).listid = data.listid;
+		}
+
+		//verify if the user is still in the to-do list
 	});
 
 	// Generate a random username and send it to the client to display it
@@ -36,7 +42,8 @@ io.on('connection', (socket) => {
 	// Receive incoming messages and broadcast them
 	socket.on('message', (message) => {
 		io.emit('message', {
-			channel: (socket as any).channel,
+			listid: (socket as any).listid,
+			userid: (socket as any).userid,
 			from: username,
 			message: message,
 			time: new Date().toLocaleString()
