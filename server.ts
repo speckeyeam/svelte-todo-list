@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 const io = new Server(server, { cors: { origin: '*' } });
 import cors from 'cors';
 import compression from 'compression';
-import { sessionValid } from '$server/server';
+//import { sessionValid } from '$server/server';
 
 const __dirname = resolve();
 
@@ -26,11 +26,11 @@ io.on('connection', (socket) => {
 	(socket as any).listid = '';
 	// When the client joins a channel, save it to the socket
 	socket.on('joinChannel', async function (data) {
-		const session = await sessionValid(data.userid);
-		if (session) {
-			(socket as any).userid = data.userid;
-			(socket as any).listid = data.listid;
-		}
+		//const session = await sessionValid(data.userid);
+		//if (session) {
+		(socket as any).userid = data.userid;
+		(socket as any).listid = data.listid;
+		//}
 
 		//verify if the user is still in the to-do list
 	});

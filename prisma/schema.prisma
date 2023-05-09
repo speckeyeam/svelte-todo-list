@@ -16,6 +16,24 @@ model Todo {
   User   User   @relation(fields: [userId], references: [id])
 }
 
+model Project {
+  id     Int    @id @unique @default(autoincrement())
+  title  String
+  task   String
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+  Task   Task[]
+}
+
+model Task {
+  id        Int     @id @unique @default(autoincrement())
+  task      String
+  projectId Int
+  userId    String
+  project   Project @relation(fields: [projectId], references: [id])
+  User      User    @relation(fields: [userId], references: [id])
+}
+
 model User {
   id       String      @id @default(uuid())
   email    String      @unique
@@ -23,6 +41,8 @@ model User {
   username String      @unique
   sessions SessionId[]
   todos    Todo[]
+  Project  Project[]
+  Task     Task[]
 }
 
 model SessionId {
