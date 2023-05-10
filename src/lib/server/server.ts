@@ -33,3 +33,23 @@ export async function getTask(id: number, sessionId: string) {
 		}
 	}
 }
+
+export async function getProjects(sessionId: string) {
+	const userId = await sessionValid(sessionId);
+	if (userId) {
+		const task = await prisma.project.findMany({ where: { userId } });
+		return task;
+	}
+}
+
+export async function getTask2(id: number, sessionId: string) {
+	const userId = await sessionValid(sessionId);
+	if (userId) {
+		const task = await prisma.Task.findUnique({ where: { id } });
+		if (task?.userId == userId) {
+			return task;
+		} else {
+			return null;
+		}
+	}
+}

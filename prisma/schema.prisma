@@ -19,7 +19,6 @@ model Todo {
 model Project {
   id     Int    @id @unique @default(autoincrement())
   title  String
-  task   String
   userId String
   User   User   @relation(fields: [userId], references: [id])
   Task   Task[]
