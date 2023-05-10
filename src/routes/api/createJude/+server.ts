@@ -27,6 +27,17 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 				}
 			}
 		});
+
+		const project = await prisma.project.create({
+			data: {
+				title: newList.value,
+				User: {
+					connect: {
+						id: userid
+					}
+				}
+			}
+		});
 	} else {
 		return json({ notLoggedIn: true });
 	}
