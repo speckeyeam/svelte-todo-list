@@ -28,9 +28,9 @@ model Task {
   id        Int     @id @unique @default(autoincrement())
   task      String
   projectId Int
-  userId    String
   project   Project @relation(fields: [projectId], references: [id])
-  User      User    @relation(fields: [userId], references: [id])
+  User      User?   @relation(fields: [userId], references: [id])
+  userId    String?
 }
 
 model User {

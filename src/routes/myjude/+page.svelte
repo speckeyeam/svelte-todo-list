@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import Task from '$components/task.svelte';
+  import Project from '$components/project.svelte';
   import Header from '$components/header.svelte';
   
 	export let data: PageData;
@@ -66,4 +67,9 @@ data.data = data.data
 
 {#each data.data as task, i}
 	<Task data={task} />
+{/each}
+
+
+{#each data.data2 as task2, i}
+	<Project data={task2} />
 {/each}

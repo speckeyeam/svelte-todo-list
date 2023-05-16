@@ -1,8 +1,13 @@
 <script lang="ts">
     import type { PageData } from './$types';
-  
+  	import Task from '$components/task.svelte';
     export let data: PageData;
   </script>
   
-  <h1>{data.title}</h1>
-  <div>{@html data.id}</div>
+
+  {#each data.data as task, i}
+	<Task data={task} />
+{/each}
+
+<!-- Button to create new task -->
+

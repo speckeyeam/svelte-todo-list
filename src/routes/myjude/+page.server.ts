@@ -19,11 +19,13 @@ export const load = ( async ({cookies}) => {
 			const userId = valid;
 			const user = await prisma.user.findUnique({
 				where: { id: userId },
-				include: { todos: true}
+				include: { todos: true, Project: true}
 			});
 			if (user != null) {
 				return {
-					data: user.todos
+					data: user.todos,
+					data2: user.Project
+
 				};
 			} else {
 				throw error(403, 'FORBIDDEN');
