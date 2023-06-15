@@ -42,6 +42,19 @@ export async function getProjects(sessionId: string) {
 	}
 }
 
+export async function getProject(id: number, sessionId: string) {
+	const userId = await sessionValid(sessionId);
+
+	const project = await prisma.project.findUnique({ where: { id } });
+	if (project?.userId == userId) {
+		return project;
+	} else {
+		console.log(project?.userId);
+		console.log(userId);
+		return null;
+	}
+}
+
 export async function getTasks(projectId: number, sessionId: string) {
 	const userId = await sessionValid(sessionId);
 

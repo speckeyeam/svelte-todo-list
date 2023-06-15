@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getTasks, sessionValid } from '$server/server';
+import { getProject, sessionValid } from '$server/server';
 
 export const load = ( async ({params, cookies}) => {
 	let valid;
@@ -14,11 +14,11 @@ export const load = ( async ({params, cookies}) => {
 			const userid = String(valid);
 			const projectId: number = +params.slug;
 			if (projectId != null) {
-				const task = await getTasks(projectId, userid);
-				if (task != null) {
+				const project = await getProject(projectId, sessionId);
+				if (project!= null) {
 					return {
-						title: task.task,
-						id: 23
+						title: project.title,
+						id: project.id
 					};
 				}
 			}

@@ -3,10 +3,10 @@
 	import { onMount } from 'svelte';
 
 	import ioClient from 'socket.io-client';
-const ENDPOINT = 'http://localhost:2000';
+	const ENDPOINT = 'http://localhost:2000';
 
-const socket = ioClient(ENDPOINT);
-const io = socket;
+	const socket = ioClient(ENDPOINT);
+	const io = socket;
 
 	let textfield = '';
 	let username = '';
@@ -14,20 +14,17 @@ const io = socket;
 	let messages: any = [];
 
 	onMount(() => {
-		
-		io.on("connect", function () {
-   		io.emit("joinChannel", {
-        channel: "jude1"
-    	});
+		io.on('connect', function () {
+			io.emit('joinChannel', {
+				channel: 'jude1'
+			});
 		});
 
 		io.on('message', (message) => {
 			// Listen to the message event
-			if (message.channel == "jude1"){
-				console.log("PROPER JUDE")
-			}
-			else{
-				alert(message.channel)
+			if (message.channel == 'jude1') {
+				console.log('PROPER JUDE');
+			} else {
 			}
 			messages = [...messages, message];
 		});

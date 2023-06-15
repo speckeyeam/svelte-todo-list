@@ -2,22 +2,22 @@
 	export let nodeReference;
 	export let data: {};
 	let originaltask = data.title;
-	let title = data.title + " (project)";
+	let title = data.title + ' (project)';
 	// let update: boolean = false;
 	// let deleteBtn: boolean = false;
 	const taskupdated = async () => {
-	// 	if (originaltask != task) {
-	// 		update = true;
-	// 	} else {
-	// 		update = false;
-	// 	}
-	// };
-	// const toggledelete = async () => {
-	// 	if (deleteBtn) {
-	// 		deleteBtn = false;
-	// 	} else {
-	// 		deleteBtn = true;
-	// 	}
+		// 	if (originaltask != task) {
+		// 		update = true;
+		// 	} else {
+		// 		update = false;
+		// 	}
+		// };
+		// const toggledelete = async () => {
+		// 	if (deleteBtn) {
+		// 		deleteBtn = false;
+		// 	} else {
+		// 		deleteBtn = true;
+		// 	}
 	};
 
 	// const updateTask = async () => {
@@ -71,20 +71,18 @@
 	// 		.catch(() => console.log('Failed to submit'));
 	// };
 </script>
+
 <!--
 	bind:this={nodeReference}
 	on:mouseenter={toggledelete}
 	on:mouseleave={toggledelete}
 -->
-<div
-	
-	style="padding-top: 1rem; padding-bottom: 1rem;"
->
-<a href = "jude/{data.id}">
-	<button>
-		{title}
-	</button>
-</a>
+<div style="padding-top: 1rem; padding-bottom: 1rem;">
+	<a href="project/{data.id}">
+		<button>
+			{title}
+		</button>
+	</a>
 
 	<!-- <input bind:value={task} on:input={taskupdated} style="make it not shit" /> -->
 	<!-- {#if deleteBtn}
