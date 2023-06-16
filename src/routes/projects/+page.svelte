@@ -35,7 +35,7 @@
 
 <button on:click={handleSubmit}>submit</button>
 
-<h2>Your tasks</h2>
+<h2>Your projects</h2>
 
 {#each data.data as project, i}
 	<Project data={project} />

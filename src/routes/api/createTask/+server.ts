@@ -17,25 +17,15 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 
 	if (valid) {
 		const userid = String(valid);
-		const list = await prisma.todo.create({
+		const list = await prisma.task.create({
 			data: {
 				task: newList.value,
-				User: {
-					connect: {
-						id: userid
-					}
-				}
-			}
-		});
-
-		const project = await prisma.project.create({
-			data: {
-				title: newList.value,
-				User: {
-					connect: {
-						id: userid
-					}
-				}
+				projectId: newList.projectId
+				// User: {
+				// 	connect: {
+				// 		id: userid
+				// 	}
+				// }
 			}
 		});
 	} else {

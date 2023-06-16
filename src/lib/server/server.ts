@@ -56,15 +56,12 @@ export async function getProject(id: number, sessionId: string) {
 }
 
 export async function getTasks(projectId: number, sessionId: string) {
-	const userId = await sessionValid(sessionId);
+	const project = await getProject(projectId, sessionId);
 
-	if (userId) {
-		const task = await prisma.task.findMany({ where: { projectId } });
-		if (/* CHECK IF USER IS PART OF THIS PROJECT*/ 1 == 1) {
-			console.log('test3');
-			return task;
-		} else {
-			return null;
-		}
+	if (project) {
+		const tasks = await prisma.task.findMany({ where: { projectId } });
+		return { tasks, id: project.id, title: project.title };
+	} else {
+		return null;
 	}
 }
