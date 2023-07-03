@@ -49,5 +49,18 @@ io.on('connection', (socket) => {
 			time: new Date().toLocaleString()
 		});
 	});
+
+	socket.on('edit', (message) => {
+		console.log(message);
+		io.emit('edit', {
+			listid: (socket as any).listid,
+			userid: (socket as any).userid,
+			from: username,
+			type: message.type,
+			channel: message.channel,
+			content: message.content,
+			time: new Date().toLocaleString()
+		});
+	});
 });
 server.setTimeout(10000);

@@ -28,7 +28,18 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 				}
 			}
 		});
+
 		if (!project) {
+			return json({ sucess: false });
+		}
+
+		const projectUser = await prisma.UsersProjects.create({
+			data: {
+				projectId: project.id,
+				userId: userid
+			}
+		});
+		if (!projectUser) {
 			return json({ sucess: false });
 		}
 	} else {

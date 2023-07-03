@@ -52,3 +52,11 @@ model SessionId {
 
   @@index([userId], map: "SessionId_userId_fkey")
 }
+
+model UsersProjects {
+  id        String @id @default(uuid())
+  userId    String
+  projectId Int
+  //role      String
+  //dateAdded String
+}

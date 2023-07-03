@@ -21,7 +21,7 @@
 	};
 
 	const updateTask = async () => {
-		fetch('/api/editJude', {
+		fetch('/api/editTask', {
 			method: 'POST',
 			body: JSON.stringify({
 				update: true,

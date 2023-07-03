@@ -17,18 +17,28 @@ export const load = ( async ({cookies}) => {
 		const valid = await sessionValid(sessionId);
 		if (valid) {
 			const userId = valid;
-			const user = await prisma.user.findUnique({
-				where: { id: userId },
-				include: { Project: true}
-			});
-			if (user != null) {
-				return {
-					data: user.Project
+			//instead, loop through usersProjects, and have that 
 
-				};
-			} else {
-				throw error(403, 'FORBIDDEN');
-			}
+			const projects = await prisma.UsersProjects.findMany({
+				where: { userId: userId },
+			});
+
+			const data: any = [];
+			for (const projectIt of projects) {
+
+				// Perform asynchronous operations with 'project'
+				const project = await prisma.project.findUnique({
+					where: { id: projectIt.projectId },
+				});
+				if (project){
+					data.push(project);
+				}
+				
+			  }
+			  return {
+				data: data
+
+			};
 		} else {
 			throw error(403, 'FORBIDDEN');
 		}

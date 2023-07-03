@@ -24,7 +24,7 @@ export const POST: RequestHandler = async ({ cookies, request }) => {
 		if (valid && validtask) {
 			console.log('test');
 			const userId = String(valid);
-			const updatelist = await prisma.todo.update({
+			const updatelist = await prisma.task.update({
 				where: { id: list.id },
 				data: { task: list.task }
 			});
